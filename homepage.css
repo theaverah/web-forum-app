@@ -67,11 +67,28 @@ body {
     margin-right: 20px;
 }
 
+.profile-div {
+    display: flex;
+    align-items: center;
+}
+
 .profile-icon {
     width: 40px;
     height: auto;
     cursor: pointer;
+    margin-right: 15px;
+}
+
+.profile-name {
+    color: white;
+    font-weight: 500;
+    font-size: 12px;
+    cursor: pointer;
     margin-right: 35px;
+}
+
+.profile-name:hover {
+    text-decoration: underline;
 }
 
 /* Styling for the different panels of the homepage */
@@ -121,11 +138,24 @@ body {
     border-radius: 5px;
     border: 2px solid #33394F;
     margin-bottom: 15px;
+    transition: border-color 0.3s;
+}
+
+.post:hover {
+    border-color: #b7a38e;
+}
+
+.post-space:hover {
+    text-decoration: underline;
 }
 
 .user-name {
     font-weight: 510;
     font-size: 14px;
+}
+
+.user-name:hover {
+    text-decoration: underline;
 }
 
 .post-metadata {
