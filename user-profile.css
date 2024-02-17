@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    	background-color: #202433;
+    	margin: 0;
+    	font-family: 'Poppins', sans-serif;
+    	color: white;
+}
+
+.container {
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+    	width: calc(100% - 200px);
+    	margin-top: 70px;
+}
+
+.profile-container {
+    	width: 60%;
+    	display: flex;
+    	flex-direction: column;
+    	align-items: center;
+    	justify-content: center;
+    	cursor: pointer;
+    	margin-left: 520px;
+    	margin-top: 13px;
+    	margin-bottom: 10px;
+    	padding: 20px;
+    	top: 0;
+    	overflow: hidden;
+}
+
+.profile {
+    	width: 80%;
+    	padding: 20px;
+    	background-color: #272D43;
+    	border-radius: 5px;
+    	border: 2px solid #33394F;
+   	margin-bottom: 15px;
+}
+
+.profile-picture img {
+    	position: absolute;
+	width: 80px;
+	height: 88px;
+	align-items: center
+	background: #9AB78D;
+	border-radius: 5px;
+	overflow: hidden
+}
+
+.profile h1 {
+	font-style: normal;
+	font-weight: 500;
+	font-size: 28px;
+}
+
+.profile-username p {
+	width: 120px;
+	height: 24px;
+	font-style: normal;
+}
+
+.profile-desc p{
+	margin-bottom: 15px;
+    	font-size: 14px;
+    	font-weight: 350;
+    	line-height: 1.5;
+    	word-spacing: 0;
+    	letter-spacing: 0.4px;
+    	text-overflow: ellipsis;
+    	overflow: hidden;
+}
+
+.profile button {
+	display: flex;
+    	align-items: center;
+    	font-size: 14px;
+    	margin-left: 21px;
+    	background-color: #33394F;
+   	color: #fff;
+    	border: none;
+    	padding: 10px 20px;
+    	border-radius: 5px;
+    	cursor: pointer;
+    	transition: background-color 0.3s;
+}
+
+.profile button:hover {
+    	background-color: #292e40;
+}
+
+
