@@ -1,85 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Threadle • Home</title>
-    <link rel="stylesheet" type="text/css" media="all" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="/client/main.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 </head>
-
 <body>
-    <div class="container">
-        <div class="header panel">
-
-            <div class="app-div">
-                <img src="images/logo.png" alt="Threadle logo" class="threadle-logo">
-
-                <div class="app-name">
-                    Threadle
-                </div>
-            </div>
-
-            <div class="search-div">
-                <img src="images/search-icon.png" alt="Search Icon" class="search-icon">
-                <span class="search-text">Search Threadle</span>
-            </div>
-
-            <div class="profile-div">
-                <img src="images/user-1.png" alt="Profile Picture" class="profile-icon"> <span class="profile-name">{{profileName}}</span>
-            </div>
+<div class="container">
+    <div class="header panel">
+        <div class="app-div">
+            <img src="/client/images/logo.png" alt="Threadle logo" class="threadle-logo">
+            <div class="app-name">Threadle</div>
+        </div>
+        <div class="search-div">
+            <img src="/client/images/search-icon.png" alt="Search Icon" class="search-icon">
+            <span class="search-text">Search Threadle</span>
+        </div>
+        <div class="profile-div">
+            <img src="/client/images/user-1.png" alt="Profile Picture" class="profile-icon">
+            <span class="profile-name">{{profileName}}</span>
         </div>
     </div>
+</div>
 
-    <script id="home-template" type="text/x-handlebars-template">
-        <!DOCTYPE html>
-        <html lang="en">
+<div id="content"></div>
 
-        <head>
-            <meta charset="UTF-8">
-            <title>Threadle • Home</title>
-            <link rel="stylesheet" type="text/css" media="all" href="main.css" />
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        </head>
-
-        <body>
-            <div class="container">
-                <div class="header panel">
-
-                    <div class="app-div">
-                        <img src="images/logo.png" alt="Threadle logo" class="threadle-logo">
-
-                        <div class="app-name">
-                            Threadle
-                        </div>
-                    </div>
-
-                    <div class="search-div">
-                        <img src="images/search-icon.png" alt="Search Icon" class="search-icon">
-                        <span class="search-text">Search Threadle</span>
-                    </div>
-
-                    <div class="profile-div">
-                        <img src="images/user-1.png" alt="Profile Picture" class="profile-icon"> <span class="profile-name">{{profileName}}</span>
-                    </div>
+<script id="home-template" type="text/x-handlebars-template">
+    <div class="container">
+        <div class="header panel">
+            <div class="app-div">
+                <img src="/client/images/logo.png" alt="Threadle logo" class="threadle-logo">
+                <div class="app-name">Threadle</div>
+            </div>
+            <div class="search-div">
+                <img src="/client/images/search-icon.png" alt="Search Icon" class="search-icon">
+                <span class="search-text">Search Threadle</span>
+            </div>
+            <div class="profile-div">
+                <img src="/client/images/user-1.png" alt="Profile Picture" class="profile-icon">
+                <span class="profile-name">{{profileName}}</span>
                 </div>
             </div>
-        </body>
+        </div>
+</script>
 
-        </html>
-    </script>
-
-    <script>
-        const homeTemplateSource = document.getElementById('home-template').innerHTML;
-        const homeTemplate = Handlebars.compile(homeTemplateSource);
-        const context = { profileName: '@Artistic-Soul-56' };
-        const htmlOutput = homeTemplate(context);
-
-        // Insert the generated HTML code into your desired container
-        document.getElementById('content').innerHTML = htmlOutput;
-    </script>
-
+<script>
+    const homeTemplateSource = document.getElementById('home-template').innerHTML;
+    const homeTemplate = Handlebars.compile(homeTemplateSource);
+    const context = { profileName: '@Artistic-Soul-56' };
+    const htmlOutput = homeTemplate(context);
+    document.getElementById('content').innerHTML = htmlOutput;
+</script>
 </body>
-
 </html>
