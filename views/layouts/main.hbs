@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{title}}</title>
+  <link rel="stylesheet" type="text/css" media="all" href="C:\Users\ADMIN\Documents\CCAPDEV\web-forum-app\client\main.css" />
+</head>
+<body>
+  <div class="container">
+    {{#if content}}
+      {{content}}
+    {{else}}
+      <div class="header panel">
+        <!-- Header content here -->
+      </div>
+      <div class="main">
+        {{body}}
+      </div>
+    {{/if}}
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>

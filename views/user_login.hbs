@@ -1,0 +1,43 @@
+<body>
+        <div class="container forms">
+                <div class="form-content">
+                    <div class="login">
+                        <div class="title">Login</div>
+                        <div class="input-boxes">
+                            <div class="input-box">
+                                <img src="/common/images/uls-envelope.png" class="icon"/>
+                                <input type="text" placeholder="Enter your email">
+                            </div>
+                            <div class="input-box">
+                                <img src="/common/images/uls-lock.png" class="icon"/>
+                                <input type="password" id="loginpw" placeholder="Enter your password">
+                            </div>
+                            <div class="showpassword-box">
+                                <input type="checkbox" id="logincheckbox">
+                                <p>Show Password</p>
+                            </div>
+                            <div class="text"><a href="#">Forgot password?</a></div>
+                            <div class="button submit-button">
+                                <input type="submit" value="Submit" id="SubmitLogin">
+                            </div>
+                            <div class="text">Don't have an account? <span class="flipfont"><a href="user_signup">Sign up</a></span></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+
+    <script>
+        let password1 = document.getElementById("loginpw");
+        let checkbox1 = document.getElementById("logincheckbox");
+
+            checkbox1.onclick = function(){
+                if (checkbox1.checked){
+                    password1.type = "text";
+                }
+                else {
+                    password1.type = "password";
+                }
+            }
+    </script>

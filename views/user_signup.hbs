@@ -1,0 +1,50 @@
+<body>
+        <div class="container forms">
+                <div class="form-content">
+                    <div class="signup">
+                        <div class="title">Sign up</div>
+                        <div class="input-boxes">
+                            <div class="input-box">
+                                <img src="/common/images/uls-user.png" class="icon"/>
+                                <input type="text" placeholder="Enter your name" id="name" name="name" required>
+                            </div>
+                            <div class="input-box">
+                                <img src="/common/images/uls-username.png" class="icon"/>
+                                <input type="text" placeholder="Enter your username" id="username" name="username" required>
+                            </div>
+                            <div class="input-box">
+                                <img src="/common/images/uls-envelope.png" class="icon"/>
+                                <input type="text" placeholder="Enter your email" id="email" name="email" required>
+                            </div>
+                            <div class="input-box">
+                                <img src="/common/images/uls-lock.png" class="icon"/>
+                                <input type="password" id="signuppw" placeholder="Enter your password" id="password" name="password" required>
+                            </div>
+                            <div class="showpassword-box">
+                                <input type="checkbox" id="signupcheckbox">
+                                <p>Show Password</p>
+                            </div>
+                            <div class="button submit-button">
+                                <input type="submit" value="Submit" id="SubmitSignup">
+                            </div>
+                            <div class="text">Already have an account? <span class="flipfont"><a href="/user_login">Login now</a></span></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+
+    <script>
+        let password2 = document.getElementById("signuppw");
+        let checkbox2 = document.getElementById("signupcheckbox");
+
+            checkbox2.onclick = function(){
+                if (checkbox2.checked){
+                    password2.type = "text";
+                }
+                else {
+                    password2.type = "password";
+                }
+            }
+    </script>
