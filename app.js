@@ -57,13 +57,13 @@ app.get('/user_signup', (req, res) => {
   });
 });
 
-app.get('/user-profile', (req, res) => {
-  res.render('user-profile.hbs')
-})
-
-app.get('/user', (req, res) => {
-  res.render('user.hbs')
-})
+app.get('/profile_user', (req, res) => {
+  res.render('profile_user', {
+    layout: 'user-profile',
+    title: 'Threadle • User Profile',
+    css: 'main.css'
+  });
+});
 
 app.post('/user_login_signup', async (req, res) => {
   try {
