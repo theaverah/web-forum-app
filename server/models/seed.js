@@ -33,5 +33,4 @@ mongoose.connect('mongodb://localhost:27017/ccapdev', { useNewUrlParser: true, u
             mongoose.connection.close();
         }
     }
-
     seedDatabase();}
