@@ -1,0 +1,47 @@
+[
+  {
+    "username": "@Artistic-Soul-56",
+    "displayName": "tk.trixie",
+    "password": "iLoveCats12345",
+    "bio": "cat lover since birth <33",
+    "following": 143,
+    "followers": 432,
+    "icon": "images/user-1.png"
+  },
+  {
+    "username": "@Historical-Tree-5688",
+    "displayName": "junjun.magtibay",
+    "password": "auqnamaboohai000",
+    "bio": "rorw",
+    "following": 0,
+    "followers": 2435,
+    "icon": "images/user-2.png"
+  },
+  {
+    "username": "@Careful-Jellyfish-479",
+    "displayName": "Angiee",
+    "password": "ohanameansfamily123",
+    "bio": "I love my family",
+    "following": 245,
+    "followers": 675,
+    "icon": "images/user-3.png"
+  },
+  {
+    "username": "@CozyBlanket",
+    "displayName": "cozyblanket",
+    "password": "warm&snuggly123",
+    "bio": "Lover of all things cozy and warm 🌟",
+    "following": 102,
+    "followers": 207,
+    "icon": "images/user-4.png"
+  },
+  {
+    "username": "@GamerGirl23",
+    "displayName": "gamer_girl",
+    "password": "gameon1234",
+    "bio": "Gamer girl extraordinaire 🎮 Streaming on Twitch every weekend!",
+    "following": 305,
+    "followers": 1520,
+    "icon": "images/user-5.png"
+  }
+]

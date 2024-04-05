@@ -15,7 +15,7 @@ app.set('view engine', 'hbs');
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static('public'));
 
-// Define th e main layout
+// Define the main layout
 app.layouts = {
   main: __dirname + '/views/layouts/main.hbs'
 };
