@@ -1,0 +1,27 @@
+{
+  "type": "Compass Connections",
+  "version": {
+    "$numberInt": "1"
+  },
+  "connections": [
+    {
+      "id": "84584d5a-5468-4eb2-b757-247171e585b9",
+      "lastUsed": {
+        "$date": {
+          "$numberLong": "1712319911711"
+        }
+      },
+      "favorite": {
+        "name": "Threadle",
+        "color": "color1"
+      },
+      "savedConnectionType": "favorite",
+      "connectionOptions": {
+        "connectionString": "mongodb://127.0.0.1/ccapdev",
+        "oidc": {
+          "serializedState": "eyJvaWRjUGx1Z2luU3RhdGVWZXJzaW9uIjowLCJzdGF0ZSI6W119"
+        }
+      }
+    }
+  ]
+}
