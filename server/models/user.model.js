@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     bio: { type: String },
     following: { type: Number, default: 0 },
     followers: { type: Number, default: 0 },
-    icon: { type: String } // Assuming the icon is stored as a string path or URL
+    icon: { type: String }
 });
 
 const User = mongoose.model('User', userSchema);
