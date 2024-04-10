@@ -8,14 +8,19 @@ const options = {
 };
 
 // Connect to MongoDB
-main().catch(err => console.error(err));
-
-async function main() {
-  await mongoose.connect(mongoDB, options);
-  console.log('Connected to MongoDB');
+async function connectToDB() {
+  try {
+    await mongoose.connect(mongoDB, options);
+    console.log('Connected to MongoDB');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+  }
 }
 
 // Event listener for database connection error
 mongoose.connection.on('error', err => {
   console.error('MongoDB connection error:', err);
 });
+
+// Exporting the connectToDB function
+module.exports = { connectToDB };
