@@ -1,228 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Threadle • Home</title>
-    <link rel="stylesheet" type="text/css" media="all" href="main.css"/>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>{{title}}</title>
+  <link rel="stylesheet" type="text/css" media="all" href="main.css">
 </head>
-
 <body>
-<div class="container">
+  <div class="container">
     <div class="header panel">
-
-        <div class="app-div">
-            <img src="images/logo.png" alt="Threadle logo" class="threadle-logo">
-
-            <div class="app-name">
-                Threadle
-            </div>
+      <div class="app-div">
+        <img src="images/logo.png" alt="Threadle logo" class="threadle-logo">
+        <div class="app-name">
+          Threadle
         </div>
-
-        <div class="search-div">
-            <img src="images/search-icon.png" alt="Search Icon" class="search-icon">
-            <span class="search-text">Search Threadle</span>
-        </div>
-
-        <div class="profile-div">
-            <img src="images/user-1.png" alt="Profile Picture" class="profile-icon"> <span class="profile-name">@Artistic-Soul-56</span>
-        </div>
+      </div>
+      <div class="search-div">
+        <img src="images/search-icon.png" alt="Search Icon" class="search-icon">
+        <span class="search-text">Search Threadle</span>
+      </div>
+      <div class="profile-div">
+        <img src="images/user-1.png" alt="Profile Picture" class="profile-icon">
+        <span class="profile-name">{{user.name}}</span>
+      </div>
     </div>
-
     <div class="side-panel">
-        <div class="new-thread-button">
-            Start New Thread
-        </div>
-
-        <div class="side-menu-button">
-            Your Threads
-        </div>
-
-        <div class="side-menu-button">
-            Popular Threads
-        </div>
-
-        <div class="side-menu-button">
-            Saved
-        </div>
-
-        <div class="spaces-div">
-            <p>Your Spaces</p>
-            <ul>
-                <li>#cats</li>
-                <li>#dlsu</li>
-                <li>#South Korea</li>
-                <li>#Teamfight Tactics</li>
-            </ul>
-        </div>
-
+      <div class="new-thread-button">
+        Start New Thread
+      </div>
+      <div class="side-menu-button">
+        Your Threads
+      </div>
+      <div class="side-menu-button">
+        Popular Threads
+      </div>
+      <div class="side-menu-button">
+        Saved
+      </div>
+      <div class="spaces-div">
+        <p>Your Spaces</p>
+        <ul>
+          <li>#cats</li>
+          <li>#dlsu</li>
+          <li>#South Korea</li>
+          <li>#Teamfight Tactics</li>
+        </ul>
+      </div>
     </div>
-
     <div class="posts-panel">
-        <div class="post">
-            <div class="post-header">
-                <div class="user-info">
-                    <img src="images/user-3.png" alt="User Icon" class="user-icon">
-                    <div class="user-details">
-                        <span class="user-name">@Careful-Jellyfish-479</span>
-                        <div class="post-metadata">
-                            <span class="post-space">#dlsu</span>
-                            ·
-                            <span class="post-date">12 minutes ago</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="post-title">
-                    street kid by razon/starbucks bit me :(
-                </div>
+      <div class="post">
+        <div class="post-header">
+          <div class="user-info">
+            <img src="images/user-3.png" alt="User Icon" class="user-icon">
+            <div class="user-details">
+              <span class="user-name">{{post.user.name}}</span>
+              <div class="post-metadata">
+                <span class="post-space">{{post.space}}</span>
+                ·
+                <span class="post-date">{{post.date}}</span>
+              </div>
             </div>
-
-            <div class="post-body">
-                I was walking home from class kanina 10pm and one of the street kids bit my arm out of nowhere (I was wearing a jacket so it didn't leave a wound) <br> <br>
-                I usually just ignore the kids but this time I'm genuinely annoyed/concerned about safety <br> <br>
-                Who can I report this to? The police station? It's not within the school premises so I'm not sure the school can do anything about this T-T How can we make that area more safe?
-            </div>
-
-            <div class="post-footer">
-                <div class="icon-div">
-                    <img src="images/upvote-icon.png" alt="Upvote Icon" class="icons">
-                    <span class="label">Upvote</span>
-                    <span class="vote-count"> · 12</span>
-                </div>
-                <div class="icon-div">
-                    <img src="images/downvote-icon.png" alt="Downvote Icon" class="icons downvote-button">
-                </div>
-                <div class="icon-div">
-                    <img src="images/comment-icon.png" alt="Replies Icon" class="icons">
-                    <span class="label">9 Replies</span>
-                </div>
-                <div class="icon-div">
-                    <img src="images/share-icon.png" alt="Share Icon" class="icons">
-                    <span class="label">Share</span>
-                </div>
-                <div class="icon-div">
-                    <img src="images/save-icon.png" alt="Save Icon" class="icons">
-                    <span class="label">Save</span>
-                </div>
-                <div class="icon-div">
-                    <img src="images/ellipsis-icon.png" alt="Ellipsis Icon" class="icons">
-                    <span class="label">More</span>
-                </div>
-            </div>
-
-
-
+          </div>
+          <div class="post-title">
+            {{post.title}}
+          </div>
         </div>
-
-        <div class="post">
-            <div class="post-header">
-                <div class="user-info">
-                    <img src="images/user-1.png" alt="User Icon" class="user-icon">
-
-                    <div class="user-details">
-                        <span class="user-name">@Artistic-Soul-56</span>
-                        <div class="post-metadata">
-                            <span class="post-space">#cats</span>
-                            ·
-                            <span class="post-date">32 minutes ago</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="post-title">
-                    My adopted cat! Help us name our kitten :) 🤍🤍
-                </div>
-            </div>
-
-            <div class="post-body">
-                <img src="images/cat.jpg" alt="cat" class="post-image">
-            </div>
-
-            <div class="post-footer">
-                <div class="icon-div">
-                    <img src="images/upvote-icon.png" alt="Upvote Icon" class="icons">
-                    <span class="label">Upvote</span>
-                    <span class="vote-count"> · 67</span>
-                </div>
-                <div class="icon-div">
-                    <img src="images/downvote-icon.png" alt="Downvote Icon" class="icons downvote-button">
-                </div>
-                <div class="icon-div">
-                    <img src="images/comment-icon.png" alt="Replies Icon" class="icons">
-                    <span class="label">34 Replies</span>
-                </div>
-                <div class="icon-div">
-                    <img src="images/share-icon.png" alt="Share Icon" class="icons">
-                    <span class="label">Share</span>
-                </div>
-                <div class="icon-div">
-                    <img src="images/save-icon.png" alt="Save Icon" class="icons">
-                    <span class="label">Save</span>
-                </div>
-                <div class="icon-div">
-                    <img src="images/ellipsis-icon.png" alt="Ellipsis Icon" class="icons">
-                    <span class="label">More</span>
-                </div>
-            </div>
+        <div class="post-body">
+          {{post.body}}
         </div>
-
-        <div class="post">
-            <div class="post-header">
-                <div class="user-info">
-                    <img src="images/user-2.png" alt="User Icon" class="user-icon">
-
-                    <div class="user-details">
-                        <span class="user-name">@Artistic-Soul-56</span>
-                        <div class="post-metadata">
-                            <span class="post-space">#Teamfight Tactics</span>
-                            ·
-                            <span class="post-date">2 hours ago</span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="post-title">
-                    In your opinion, who is the worst 5 cost unit ever in TFT?
-                </div>
-            </div>
-
-            <div class="post-body">
-                For me I think it's Volibear from set 5
-            </div>
-
-            <div class="post-footer">
-                <div class="icon-div">
-                    <img src="images/upvote-icon.png" alt="Upvote Icon" class="icons">
-                    <span class="label">Upvote</span>
-                    <span class="vote-count"> · 86</span>
-                </div>
-                <div class="icon-div">
-                    <img src="images/downvote-icon.png" alt="Downvote Icon" class="icons downvote-button">
-                </div>
-                <div class="icon-div">
-                    <img src="images/comment-icon.png" alt="Replies Icon" class="icons">
-                    <span class="label">104 Replies</span>
-                </div>
-                <div class="icon-div">
-                    <img src="images/share-icon.png" alt="Share Icon" class="icons">
-                    <span class="label">Share</span>
-                </div>
-                <div class="icon-div">
-                    <img src="images/save-icon.png" alt="Save Icon" class="icons">
-                    <span class="label">Save</span>
-                </div>
-                <div class="icon-div">
-                    <img src="images/ellipsis-icon.png" alt="Ellipsis Icon" class="icons">
-                    <span class="label">More</span>
-                </div>
-            </div>
+        <div class="post-footer">
+          <div class="icon-div">
+            <img src="images/upvote-icon.png" alt="Upvote Icon" class="icons">
+            <span class="label">Upvote</span>
+            <span class="vote-count"> · {{post.votes}}</span>
+          </div>
+          <div class="icon-div">
+            <img src="images/downvote-icon.png" alt="Downvote Icon" class="icons downvote-button">
+          </div>
+          <div class="icon-div">
+            <img src="images/comment-icon.png" alt="Comment Icon" class="icons">
+            <span class="label">Comment</span>
+          </div>
+          <div class="icon-div">
+            <img src="images/share-icon.png" alt="Share Icon" class="icons">
+            <span class="label">Share</span>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-
-<script src="homepage.js"></script>
-
+  </div>
 </body>
-
 </html>
