@@ -3,10 +3,21 @@ const app = express();
 const exphbs  = require('express-handlebars');
 const bcrypt = require('bcrypt');
 const path = require('path');
+var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
+var session = require("express-session");
+var morgan = require("morgan");
+
+const mongoose = require('mongoose');
+const { MongoClient } = require('mongodb');
+
+let uri = "mongodb+srv://natamendoza:010604@apdev.xlfciy3.mongodb.net/?retryWrites=true&w=majority&appName=apdev";
+
+mongoose.connect(uri)
+    .then(() => console.log("Connected to MongoDB Atlas"))
+    .catch(error => console.error("Error connecting to MongoDB Atlas:", error)); 
 
 const { connectToDB } = require('./server/models/db.js');
-
-const routes = require('./server/routes/routes.js');
 
 // Configure Handlebars as the template engine
 app.engine('hbs', exphbs.engine({
