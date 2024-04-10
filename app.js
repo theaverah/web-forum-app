@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const exphbs  = require('express-handlebars');
 const bcrypt = require('bcrypt');
+const path = require('path');
 
 // Configure Handlebars as the template engine
 app.engine('hbs', exphbs.engine({
@@ -22,28 +23,40 @@ app.layouts = {
 
 // Serve the homepage template at /
 app.get('/', (req, res) => {
-  const context = { profileName: '@Artistic-Soul-56' };
-  res.render('homepage', {
+  res.render('home', {
+    layout: 'home',
     title: 'Threadle',
     css: 'main.css'
   });
 });
 
 app.get('/main', (req, res) => {
-  res.render('main.hbs')
+  res.render('main', {
+    layout: 'default',
+    title: 'Threadle • About',
+    css: 'main.css'
+  });
 })
 
 app.get('/about', (req, res) => {
-  res.render('about.hbs')
+  res.render('about', {
+    layout: 'default',
+    title: 'Threadle • About',
+    css: 'main.css'
+  });
 })
 
 app.get('/homepage', (req, res) => {
-  res.render('homepage')
+  res.render('homepage', {
+    layout: 'default',
+    title: 'Threadle • Home',
+    css: 'main.css'
+  });
 })
 
 app.get('/user_login', (req, res) => {
   res.render('user_login', {
-    layout: 'login_signup',
+    layout: 'default',
     title: 'Threadle • Login',
     css: 'user_login_signup.css'
   });
@@ -51,7 +64,7 @@ app.get('/user_login', (req, res) => {
 
 app.get('/user_signup', (req, res) => {
   res.render('user_signup', {
-    layout: 'login_signup',
+    layout: 'default',
     title: 'Threadle • Sign up',
     css: 'user_login_signup.css'
   });
