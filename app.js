@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const exphbs  = require('express-handlebars');
 const bcrypt = require('bcrypt');
-const path = require('path');
 
 // Configure Handlebars as the template engine
 app.engine('hbs', exphbs.engine({
@@ -23,17 +22,17 @@ app.layouts = {
 
 // Serve the homepage template at /
 app.get('/', (req, res) => {
-  res.render('home', {
-    layout: 'home',
-    title: 'Threadle',
-    css: 'main.css'
+  res.render('user_login', {
+    layout: 'default',
+    title: 'Threadle • Login',
+    css: 'user_login_signup.css'
   });
 });
 
 app.get('/main', (req, res) => {
   res.render('main', {
     layout: 'default',
-    title: 'Threadle • About',
+    title: 'Threadle',
     css: 'main.css'
   });
 })
@@ -54,7 +53,7 @@ app.get('/homepage', (req, res) => {
   });
 })
 
-app.get('/user_login', (req, res) => {
+app.get('/login', (req, res) => {
   res.render('user_login', {
     layout: 'default',
     title: 'Threadle • Login',
@@ -62,7 +61,7 @@ app.get('/user_login', (req, res) => {
   });
 });
 
-app.get('/user_signup', (req, res) => {
+app.get('/signup', (req, res) => {
   res.render('user_signup', {
     layout: 'default',
     title: 'Threadle • Sign up',
@@ -78,7 +77,7 @@ app.get('/profile_user', (req, res) => {
   });
 });
 
-app.post('/user_login_signup', async (req, res) => {
+app.post('/login', async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
@@ -95,7 +94,7 @@ app.post('/user_login_signup', async (req, res) => {
     res.redirect('/user-profile');
 
   } catch {
-    res.redirect('/user_login_signup');
+    res.redirect('/user_login');
   }
 });
 
