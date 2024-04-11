@@ -6,7 +6,8 @@
     "bio": "cat lover since birth <33",
     "following": 143,
     "followers": 432,
-    "icon": "images/user-1.png"
+    "icon": "images/user-1.png",
+    "email": "tk.trixie@gmail.com"
   },
   {
     "username": "@Historical-Tree-5688",
@@ -15,7 +16,8 @@
     "bio": "rorw",
     "following": 0,
     "followers": 2435,
-    "icon": "images/user-2.png"
+    "icon": "images/user-2.png",
+    "email": "junjun.magtibay@gmail.com"
   },
   {
     "username": "@Careful-Jellyfish-479",
@@ -24,7 +26,8 @@
     "bio": "I love my family",
     "following": 245,
     "followers": 675,
-    "icon": "images/user-3.png"
+    "icon": "images/user-3.png",
+    "email": "angiee@gmail.com"
   },
   {
     "username": "@CozyBlanket",
@@ -33,7 +36,8 @@
     "bio": "Lover of all things cozy and warm 🌟",
     "following": 102,
     "followers": 207,
-    "icon": "images/user-4.png"
+    "icon": "images/user-4.png",
+    "email": "cozyblanket@gmail.com"
   },
   {
     "username": "@GamerGirl23",
@@ -42,6 +46,7 @@
     "bio": "Gamer girl extraordinaire 🎮 Streaming on Twitch every weekend!",
     "following": 305,
     "followers": 1520,
-    "icon": "images/user-5.png"
+    "icon": "images/user-5.png",
+    "email": "gamer_girl@gmail.com"
   }
 ]
