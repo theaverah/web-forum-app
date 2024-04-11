@@ -114,8 +114,16 @@ app.get('/post1', (req, res) => {
   });
 });
 
+app.get('/addpost', (req, res) => {
+  res.render('addpost', {
+    layout: 'default',
+    title: 'Threadle • Add Post',
+    css: 'main.css'
+  });
+});
 
-app.post('/login', async (req, res) => {
+
+app.post('/user_signup', async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
@@ -132,7 +140,7 @@ app.post('/login', async (req, res) => {
     res.redirect('/user-profile');
 
   } catch {
-    res.redirect('/login');
+    res.redirect('/user_signup');
   }
 });
 
@@ -144,6 +152,7 @@ app.get('/posts/:postId', async (req, res) => {
           return res.status(404).send('Post not found');
       }
       res.render('post1', { post });
+      res.render('homepage', { post });
   } catch (error) {
       console.error('Error fetching post:', error);
       res.status(500).send('Internal server error');
@@ -160,6 +169,27 @@ app.get('/homepage', async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 });
+
+app.post('/addpost', async (req, res) => {
+  const { title, content, space } = req.body;
+
+  try {
+      const newPost = new Post({
+          title: title,
+          content: content,
+          space: space,
+      });
+
+      const savedPost = await newPost.save();
+
+      res.redirect('/homepage');
+  } catch (error) {
+      console.error('Error saving post:', error);
+      res.status(500).send('Error saving post');
+  }
+});
+
+
 
 db.connectToDB();
 
