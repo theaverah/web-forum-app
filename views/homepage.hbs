@@ -19,9 +19,9 @@
     </div>
 
     <div class="side-panel">
-        <div class="new-thread-button">
+        <a href="/addpost" class="new-thread-button">
             Start New Thread
-        </div>
+        </a>
         <div class="side-menu-button">
             <a href="/homepage">Home</a>
         </div>
@@ -84,6 +84,13 @@
                 </div>
             </div>
         </div>
+
+        <h1>Recent Posts</h1>
+        <ul>
+            {{#each post}}
+            <li><a href="/posts/{{post._id}}">{{post.title}}</a></li>
+            {{/each}}
+        </ul>
     </div>
 
 </div>

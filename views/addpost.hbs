@@ -1,0 +1,55 @@
+<body>
+<div class="header panel">
+    <div class="app-div">
+        <img src="/common/images/logo.png" alt="Threadle logo" class="threadle-logo">
+            <div class="app-name">Threadle</div>
+    </div>
+    <div class="search-div">
+        <img src="images/search-icon.png" alt="Search Icon" class="search-icon">
+        <span class="search-text">Search Threadle</span>
+    </div>
+    <div class="profile picture">
+        <img src="images/user-1.png" alt="Profile Picture" class="profile-icon">
+    </div>
+</div>
+<div class="side-panel">
+    <a href="/addpost" class="new-thread-button">
+        Start New Thread
+    </a>
+    <div class="side-menu-button">
+        <a href="/homepage">Home</a>
+    </div>
+    <div class="side-menu-button">
+        <a href="/about">About Us</a>
+    </div>
+    <div class="side-menu-button">
+        <a href="/login">Log Out</a>
+    </div>
+    <div class="spaces-div">
+        <p>Your Spaces</p>
+        <ul>
+            <li>#cats</li>
+            <li>#dlsu</li>
+            <li>#South Korea</li>
+            <li>#Teamfight Tactics</li>
+        </ul>
+    </div>
+</div>
+</div>
+<div class="container">
+    <div class="posts-panel">
+        <h1>Add New Post</h1>
+        <form action="/addpost" method="POST">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title" placeholder="Post Title" class="input-field"><br>
+            <label for="content">Content:</label><br>
+            <textarea id="content" name="content" rows="5" cols="50" class="textarea-field"></textarea><br>
+            <label for="space">Space:</label><br>
+            <input type="text" id="space" name="space" placeholder="Your Hashtags" class="input-field"><br>
+            <br>
+            <button type="submit" class="new-thread-button">Thread It</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
