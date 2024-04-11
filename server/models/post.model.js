@@ -5,7 +5,8 @@ const postSchema = new mongoose.Schema({
     content: { type: String, required: true },
     space: { type: String, required: true },
     user: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now },
+    date: { type: Date, default: Date.now },
+    votes: { type: Number, default: 0 }
 });
 
 // CRUD operations

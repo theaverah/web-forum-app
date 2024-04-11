@@ -7,6 +7,8 @@ var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
 var morgan = require("morgan");
+const db = require('server/models/db');
+const Post = require('./server/models/post.model');
 
 const mongoose = require('mongoose');
 const { MongoClient } = require('mongodb');
@@ -37,12 +39,23 @@ app.layouts = {
 };
 
 // Serve the homepage template at /
-app.get('/', (req, res) => {
-  res.render('homepage', {
-    layout: 'default',
-    title: 'Threadle',
-    css: 'main.css'
-  });
+app.get('/', async (req, res) => {
+  try {
+    // Retrieve the posts from the database
+    const posts = await db.Post.find({});
+
+    // Render the homepage template with the retrieved posts
+    res.render('homepage', {
+      layout: 'default',
+      title: 'Threadle',
+      css: 'main.css',
+      posts: posts
+    });
+
+  } catch (error) {
+    console.error('Error retrieving posts:', error);
+    res.status(500).send('Error retrieving posts');
+  }
 });
 
 app.get('/main', (req, res) => {
@@ -114,7 +127,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-connectToDB();
+db.connectToDB();
 
 // Start the server
 const PORT = process.env.PORT || 3000;

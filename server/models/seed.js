@@ -4,7 +4,7 @@ const Post = require('./post.model');
 const Comment = require('./comment.model');
 
 // Connect to MongoDB with a callback function
-mongoose.connect('mongodb://localhost:27017/ccapdev', { useNewUrlParser: true, useUnifiedTopology: true }, (error) => {
+mongoose.connect('mongodb+srv://natamendoza:010604@apdev.xlfciy3.mongodb.net/?retryWrites=true&w=majority&appName=apdev', { useNewUrlParser: true, useUnifiedTopology: true }, (error) => {
     if (error) {
         console.error('Error connecting to MongoDB:', error);
         return;
