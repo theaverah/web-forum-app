@@ -7,7 +7,11 @@ var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
 var morgan = require("morgan");
+<<<<<<< Updated upstream
 const db = require('./server/models/db.js');
+=======
+const db = require('./server/models/db');
+>>>>>>> Stashed changes
 const Post = require('./server/models/post.model');
 
 const mongoose = require('mongoose');
@@ -20,6 +24,12 @@ mongoose.connect(uri)
     .catch(error => console.error("Error connecting to MongoDB Atlas:", error)); 
 
 const { connectToDB } = require('./server/models/db.js');
+
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+}));
 
 // Configure Handlebars as the template engine
 app.engine('hbs', exphbs.engine({

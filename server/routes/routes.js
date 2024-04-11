@@ -2,14 +2,26 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const router = express.Router();
+const Post = require('../models/post.model.js');
 
 // Serve the homepage template at /
-router.get('/', (req, res) => {
-  res.render('homepage', {
-    layout: 'default',
-    title: 'Threadle',
-    css: 'main.css'
-  });
+router.get('/', async (req, res) => {
+  try {
+    // Retrieve all posts from the database
+    const posts = await Post.find({});
+
+    // Render the homepage template with the retrieved posts
+    res.render('homepage', {
+      layout: 'default',
+      title: 'Threadle',
+      css: 'main.css',
+      posts: posts
+    });
+
+  } catch (error) {
+    console.error('Error retrieving posts:', error);
+    res.status(500).send('Error retrieving posts');
+  }
 });
 
 // Serve the main template at /main
