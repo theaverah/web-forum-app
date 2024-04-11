@@ -6,11 +6,10 @@ const User = require('./server/models/user.model.js');
 const bcrypt = require('bcrypt');
 var session = require("express-session");
 var morgan = require("morgan");
-<<<<<<< Updated upstream
+
 const db = require('./server/models/db.js');
-=======
+
 const db = require('./server/models/db');
->>>>>>> Stashed changes
 const Post = require('./server/models/post.model');
 const app = express();
 
@@ -108,26 +107,30 @@ app.get('/post1', (req, res) => {
   });
 });
 
+app.post('/login_user', (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  console.log("Username:", username, "Password:", password);
 
-app.post('/login', async (req, res) => {
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+  User.findOne({username: username }).lean().then(function (User) {
+    console.log("Welcome", username);
 
-    const newUser = new User({
-      name: req.body.name,
-      email: req.body.email,
-      username: req.body.username,
-      password: hashedPassword,
-    });
-    await newUser.save();
-
-    console.log('New user created:', newUser);
-
-    res.redirect('/user-profile');
-
-  } catch {
-    res.redirect('/login');
-  }
+    if (User != undefined && User._id != null) {
+      req.session.username = username;
+      console.log("Welcome again", username);
+      if (User) {
+        if (User.password === password) {
+          res.render('homepage', {
+            layout: 'default',
+            title: 'Threadle • Home',
+            css: 'main.css'
+          });
+        }
+      }
+    } else {
+      console.log("Cannot find match");
+    }
+  })
 });
 
 app.get('/posts/:postId', async (req, res) => {
@@ -144,6 +147,33 @@ app.get('/posts/:postId', async (req, res) => {
   }
 });
 
+app.get('/addpost', (req, res) => {
+  res.render('addpost', {
+    layout: 'default',
+    title: 'Threadle • Add Post',
+    css: 'main.css'
+  });
+});
+
+app.post('/addpost', async (req, res) => {
+  const { title, content, space } = req.body;
+
+  try {
+      const newPost = new Post({
+          title: title,
+          content: content,
+          space: space,
+      });
+
+      const savedPost = await newPost.save();
+
+      res.redirect('/homepage');
+  } catch (error) {
+      console.error('Error saving post:', error);
+      res.status(500).send('Error saving post');
+  }
+});
+
 app.get('/homepage', async (req, res) => {
   try {
       const posts = await Post.find();
@@ -154,6 +184,7 @@ app.get('/homepage', async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 });
+
 
 db.connectToDB();
 
