@@ -1,14 +1,12 @@
+//npm i express express-handlebars bcrypt express-session mongoose mongodb
 const express = require('express');
-const app = express();
-const exphbs  = require('express-handlebars');
-const bcrypt = require('bcrypt');
+const exphbs = require('express-handlebars');
 const path = require('path');
-var bodyParser = require("body-parser");
-var cookieParser = require("cookie-parser");
+const User = require('./server/models/user.model.js');
+const bcrypt = require('bcrypt');
 var session = require("express-session");
-var morgan = require("morgan");
-const db = require('server/models/db');
-const Post = require('./server/models/post.model');
+
+const app = express();
 
 const mongoose = require('mongoose');
 const { MongoClient } = require('mongodb');
@@ -17,9 +15,13 @@ let uri = "mongodb+srv://natamendoza:010604@apdev.xlfciy3.mongodb.net/?retryWrit
 
 mongoose.connect(uri)
     .then(() => console.log("Connected to MongoDB Atlas"))
-    .catch(error => console.error("Error connecting to MongoDB Atlas:", error)); 
-
-const { connectToDB } = require('./server/models/db.js');
+    .catch(error => console.error("Error connecting to MongoDB Atlas:", error));
+    
+app.use(session ({
+  secret: 'secret_key',
+  resave: false,
+  saveUninitialized: false
+}));
 
 // Configure Handlebars as the template engine
 app.engine('hbs', exphbs.engine({
@@ -30,6 +32,7 @@ app.engine('hbs', exphbs.engine({
 
 // Set the view engine to Handlebars
 app.set('view engine', 'hbs');
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static('public'));
 
@@ -39,23 +42,12 @@ app.layouts = {
 };
 
 // Serve the homepage template at /
-app.get('/', async (req, res) => {
-  try {
-    // Retrieve the posts from the database
-    const posts = await db.Post.find({});
-
-    // Render the homepage template with the retrieved posts
-    res.render('homepage', {
-      layout: 'default',
-      title: 'Threadle',
-      css: 'main.css',
-      posts: posts
-    });
-
-  } catch (error) {
-    console.error('Error retrieving posts:', error);
-    res.status(500).send('Error retrieving posts');
-  }
+app.get('/', (req, res) => {
+  res.render('homepage', {
+    layout: 'default',
+    title: 'Threadle',
+    css: 'main.css'
+  });
 });
 
 app.get('/main', (req, res) => {
@@ -106,31 +98,105 @@ app.get('/profile_user', (req, res) => {
   });
 });
 
-app.post('/login', async (req, res) => {
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+app.post('/signup_user', async (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const username = req.body.username;
+  const password = req.body.password;
+  console.log("Username:", username, "Password:", password);
 
+  try {
+    const existingUser = await User.findOne({ $or: [{ username }, { email }] });
+    if (existingUser) {
+      // User with the provided username or email already exists
+      return res.status(400).render('user_signup', { error: 'Username or email already in use' });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user object
     const newUser = new User({
-      name: req.body.name,
-      email: req.body.email,
-      username: req.body.username,
-      password: hashedPassword,
+      name,
+      username,
+      email,
+      password: hashedPassword // Store the hashed password
+      // You can include additional fields as needed
     });
+
+    // Save the new user to the database
     await newUser.save();
 
-    console.log('New user created:', newUser);
-
-    res.redirect('/user-profile');
-
-  } catch {
-    res.redirect('/login');
+    // Redirect to login page after successful signup
+    res.render('homepage', {
+      layout: 'default',
+      title: 'Threadle • Home',
+      css: 'main.css'
+    });
+  } catch (error) {
+    console.error('Error signing up user:', error);
+    res.status(500).send('Internal Server Error');
   }
 });
 
-db.connectToDB();
+// Login route
+app.post('/login_user', (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  console.log("Username:", username, "Password:", password);
+
+  User.findOne({ username: username }).lean().then(function (User) {
+    console.log("Welcome", User?.username);
+    if (User != undefined && User._id != null) {
+      req.session.username = username;
+      console.log("Welcome again", User.username);
+
+      if (User) {
+        if (User.password === password) {
+          res.render('homepage', {
+            layout: 'default',
+            title: 'Threadle • Home',
+            css: 'main.css'
+          });
+        } else {
+          console.log("username not found");
+          res.render('/login', {
+            layout: 'default',
+            title: 'Threadle • Login',
+            css: 'user_login_signup.css'
+          });
+        }
+      }
+    } else {
+      console.log("Cannot find match");
+    }
+  })
+});
+
+// Dashboard route (protected)
+app.get('/homepage', (req, res) => {
+  if (!req.session.user) {
+    // Redirect to login if user is not authenticated
+    return res.redirect('/login');
+  }
+
+  // Render dashboard for authenticated user
+  res.send(`Welcome, ${req.session.user.username}!`);
+});
+
+// Logout route
+app.get('/logout', (req, res) => {
+  // Destroy session data
+  req.session.destroy(err => {
+    if (err) {
+      console.error('Error destroying session:', err);
+    }
+    res.redirect('/login');
+  });
+});
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
   console.log(`Listening at port ${PORT}`);

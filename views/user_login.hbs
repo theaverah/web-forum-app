@@ -1,4 +1,5 @@
 <body>
+    <form name="login_user" action="login_user" method="POST">
         <div class="container forms">
                 <div class="form-content">
                     <div class="login">
@@ -6,11 +7,11 @@
                         <div class="input-boxes">
                             <div class="input-box">
                                 <img src="/common/images/uls-username.png" class="icon"/>
-                                <input type="text" placeholder="Enter your username">
+                                <input type="text" id="username" placeholder="Enter your username" name="username" required>
                             </div>
                             <div class="input-box">
                                 <img src="/common/images/uls-lock.png" class="icon"/>
-                                <input type="password" id="loginpw" placeholder="Enter your password">
+                                <input type="password" id="password" placeholder="Enter your password" name="password" required>
                             </div>
                             <div class="showpassword-box">
                                 <input type="checkbox" id="logincheckbox">
@@ -24,12 +25,12 @@
                         </div>
                     </div>
                 </div>
-            </form>
         </div>
-    </body>
+    </form>
+</body>
 
     <script>
-        let password1 = document.getElementById("loginpw");
+        let password1 = document.getElementById("password");
         let checkbox1 = document.getElementById("logincheckbox");
 
             checkbox1.onclick = function(){
