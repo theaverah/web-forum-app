@@ -33,4 +33,4 @@ mongoose.connect('mongodb+srv://natamendoza:010604@apdev.xlfciy3.mongodb.net/?re
             mongoose.connection.close();
         }
     }
-    seedDatabase();}
+    seedDatabase();})
