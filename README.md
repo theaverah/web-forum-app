@@ -7,18 +7,23 @@ This is a web forum application built using Node.js, Express.js, MongoDB, and Ha
    ```bash
    git clone https://github.com/theaverah/web-forum-app
 
-2. **Install dependencies:**
+2. **Navigate to the project directory:**
+   ```bash
+   cd web-forum-app
+
+3. **Install dependencies:**
     ```bash
     npm install
 
-3. **Set up MongoDB:**
+4. **Set up MongoDB:**
 
-- Make sure MongoDB is installed and running on your local machine.
-
-4. **Start the server:**
-    ```bash
-    npm start
+   - Make sure MongoDB is installed and running on your local machine.
    
-5. **Access the application:**
 
-- Open your web browser and navigate to http://localhost:3000.
+5. **Run app.js:**
+    ```bash
+    node app.js
+   
+2. **Access the application:**
+
+   - Open your web browser and navigate to http://localhost:3000.
