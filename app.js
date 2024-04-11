@@ -5,14 +5,10 @@ const path = require('path');
 const User = require('./server/models/user.model.js');
 const bcrypt = require('bcrypt');
 var session = require("express-session");
-<<<<<<< HEAD
-
-const app = express();
-=======
 var morgan = require("morgan");
 const db = require('./server/models/db.js');
 const Post = require('./server/models/post.model');
->>>>>>> a8b84b908133b1e2773e7e66b14dfe2e21859140
+const app = express();
 
 const mongoose = require('mongoose');
 const { MongoClient } = require('mongodb');
@@ -104,14 +100,6 @@ app.get('/profile_user', (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-app.post('/signup_user', async (req, res) => {
-  const name = req.body.name;
-  const email = req.body.email;
-  const username = req.body.username;
-  const password = req.body.password;
-  console.log("Username:", username, "Password:", password);
-=======
 app.get('/post1', (req, res) => {
   res.render('post1', {
     layout: 'default',
@@ -120,55 +108,14 @@ app.get('/post1', (req, res) => {
   });
 });
 
-
-app.post('/login', async (req, res) => {
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
->>>>>>> a8b84b908133b1e2773e7e66b14dfe2e21859140
-
-  try {
-    const existingUser = await User.findOne({ $or: [{ username }, { email }] });
-    if (existingUser) {
-      // User with the provided username or email already exists
-      return res.status(400).render('user_signup', { error: 'Username or email already in use' });
-    }
-
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create a new user object
-    const newUser = new User({
-      name,
-      username,
-      email,
-      password: hashedPassword // Store the hashed password
-      // You can include additional fields as needed
-    });
-
-    // Save the new user to the database
-    await newUser.save();
-
-    // Redirect to login page after successful signup
-    res.render('homepage', {
-      layout: 'default',
-      title: 'Threadle • Home',
-      css: 'main.css'
-    });
-  } catch (error) {
-    console.error('Error signing up user:', error);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
-<<<<<<< HEAD
 // Login route
 app.post('/login_user', (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   console.log("Username:", username, "Password:", password);
 
-  User.findOne({ username: username }).lean().then(function (User) {
-    console.log("Welcome", User?.username);
+  User.findOne({ username: req.session.user.username }).lean().then(function (User) {
+    console.log("Welcome", User.username);
     if (User != undefined && User._id != null) {
       req.session.username = username;
       console.log("Welcome again", User.username);
@@ -216,37 +163,9 @@ app.get('/logout', (req, res) => {
     res.redirect('/login');
   });
 });
-=======
-app.get('/posts/:postId', async (req, res) => {
-  try {
-      const postId = req.params.postId;
-      const post = await Post.findById(postId);
-      if (!post) {
-          return res.status(404).send('Post not found');
-      }
-      res.render('post1', { post });
-  } catch (error) {
-      console.error('Error fetching post:', error);
-      res.status(500).send('Internal server error');
-  }
-});
-
-app.get('/homepage', async (req, res) => {
-  try {
-      const posts = await Post.find();
-
-      res.render('homepage', { posts: posts });
-  } catch (error) {
-      console.error('Error fetching posts:', error);
-      res.status(500).send('Internal Server Error');
-  }
-});
-
-db.connectToDB();
->>>>>>> a8b84b908133b1e2773e7e66b14dfe2e21859140
 
 // Start the server
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
   console.log(`Listening at port ${PORT}`);
