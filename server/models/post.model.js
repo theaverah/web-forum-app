@@ -31,6 +31,11 @@ postSchema.statics.delete = async function (id) {
     return await this.findByIdAndDelete(id);
 };
 
+postSchema.pre('save', function(next) {
+    this.user = req.user.username;
+    next();
+});
+
 const Post = mongoose.model('Post', postSchema);
 
 module.exports = Post;

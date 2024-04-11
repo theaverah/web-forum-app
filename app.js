@@ -6,7 +6,11 @@ const User = require('./server/models/user.model.js');
 const bcrypt = require('bcrypt');
 var session = require("express-session");
 var morgan = require("morgan");
+<<<<<<< Updated upstream
 const db = require('./server/models/db.js');
+=======
+const db = require('./server/models/db');
+>>>>>>> Stashed changes
 const Post = require('./server/models/post.model');
 const app = express();
 
@@ -17,13 +21,9 @@ let uri = "mongodb+srv://natamendoza:010604@apdev.xlfciy3.mongodb.net/?retryWrit
 
 mongoose.connect(uri)
     .then(() => console.log("Connected to MongoDB Atlas"))
-    .catch(error => console.error("Error connecting to MongoDB Atlas:", error));
-    
-app.use(session ({
-  secret: 'secret_key',
-  resave: false,
-  saveUninitialized: false
-}));
+    .catch(error => console.error("Error connecting to MongoDB Atlas:", error)); 
+
+const { connectToDB } = require('./server/models/db.js');
 
 // Configure Handlebars as the template engine
 app.engine('hbs', exphbs.engine({
@@ -108,61 +108,54 @@ app.get('/post1', (req, res) => {
   });
 });
 
-// Login route
-app.post('/login_user', (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  console.log("Username:", username, "Password:", password);
 
-  User.findOne({ username: req.session.user.username }).lean().then(function (User) {
-    console.log("Welcome", User.username);
-    if (User != undefined && User._id != null) {
-      req.session.username = username;
-      console.log("Welcome again", User.username);
+app.post('/login', async (req, res) => {
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-      if (User) {
-        if (User.password === password) {
-          res.render('homepage', {
-            layout: 'default',
-            title: 'Threadle • Home',
-            css: 'main.css'
-          });
-        } else {
-          console.log("username not found");
-          res.render('/login', {
-            layout: 'default',
-            title: 'Threadle • Login',
-            css: 'user_login_signup.css'
-          });
-        }
-      }
-    } else {
-      console.log("Cannot find match");
-    }
-  })
-});
+    const newUser = new User({
+      name: req.body.name,
+      email: req.body.email,
+      username: req.body.username,
+      password: hashedPassword,
+    });
+    await newUser.save();
 
-// Dashboard route (protected)
-app.get('/homepage', (req, res) => {
-  if (!req.session.user) {
-    // Redirect to login if user is not authenticated
-    return res.redirect('/login');
-  }
+    console.log('New user created:', newUser);
 
-  // Render dashboard for authenticated user
-  res.send(`Welcome, ${req.session.user.username}!`);
-});
+    res.redirect('/user-profile');
 
-// Logout route
-app.get('/logout', (req, res) => {
-  // Destroy session data
-  req.session.destroy(err => {
-    if (err) {
-      console.error('Error destroying session:', err);
-    }
+  } catch {
     res.redirect('/login');
-  });
+  }
 });
+
+app.get('/posts/:postId', async (req, res) => {
+  try {
+      const postId = req.params.postId;
+      const post = await Post.findById(postId);
+      if (!post) {
+          return res.status(404).send('Post not found');
+      }
+      res.render('post1', { post });
+  } catch (error) {
+      console.error('Error fetching post:', error);
+      res.status(500).send('Internal server error');
+  }
+});
+
+app.get('/homepage', async (req, res) => {
+  try {
+      const posts = await Post.find();
+
+      res.render('homepage', { posts: posts });
+  } catch (error) {
+      console.error('Error fetching posts:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
+db.connectToDB();
 
 // Start the server
 const PORT = process.env.PORT || 3000;

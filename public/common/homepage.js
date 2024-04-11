@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     $('.search-icon').click(function() {
         var searchText = $('.search-text').text();
