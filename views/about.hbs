@@ -1,17 +1,20 @@
 <body>
-	<div class="header panel">
-		<div class="app-div">
-			<img src="/common/images/logo.png" alt="Threadle logo" class="threadle-logo">
-			<div class="app-name">Threadle</div>
-		</div>
-		<div class="search-div">
-			<img src="/common/images/search-icon.png" alt="Search Icon" class="search-icon">
-			<span class="search-text">Search Threadle</span>
-		</div>
-		<div class="profile picture">
-			<img src="/common/images/user-1.png" alt="Profile Picture" class="profile-icon">
-		</div>
-	</div>
+    <div class="header panel">
+        <div class="app-div">
+            <img src="/common/images/logo.png" alt="Threadle logo" class="threadle-logo">
+            <div class="app-name">Threadle</div>
+        </div>
+        <div class="search-div">
+            <img src="/common/images/search-icon.png" alt="Search Icon" class="search-icon">
+            <span class="search-text">Search Threadle</span>
+        </div>
+        <div class="profile-div">
+            <a href="/profile_user/{{profileName}}">
+                <img src="/common/images/user-1.png" alt="Profile Picture" class="profile-icon">
+            </a>
+            <a href="/profile_user/{{profileName}}" class="profile-name">{{profileName}}</a>
+        </div>
+    </div>
     <div class="side-panel">
         <div class="new-thread-button">
             Start New Thread

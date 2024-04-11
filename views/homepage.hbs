@@ -10,8 +10,10 @@
             <span class="search-text">Search Threadle</span>
         </div>
         <div class="profile-div">
-            <img src="/common/images/user-1.png" alt="Profile Picture" class="profile-icon">
-            <span class="profile-name">{{profileName}}</span>
+            <a href="/profile_user/{{profileName}}">
+                <img src="/common/images/user-1.png" alt="Profile Picture" class="profile-icon">
+            </a>
+            <a href="/profile_user/{{profileName}}" class="profile-name">{{profileName}}</a>
         </div>
     </div>
     <div class="side-panel">
@@ -40,47 +42,12 @@
         </div>
     </div>
     <div class="posts-panel">
-        {{#each posts}}
-        <div class="post">
-            <div class="post-header">
-                <div class="user-info">
-                    <img src="/common/images/user-3.png" alt="User Icon" class="user-icon">
-                    <div class="user-details">
-                        <span class="user-name">{{this.user.username}}</span>
-                        <div class="post-metadata">
-                            <span class="post-space">{{this.space}}</span>
-                            ·
-                            <span class="post-date">{{this.date}}</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="post-title">
-                    {{this.title}}
-                </div>
-            </div>
-            <div class="post-body">
-                {{this.content}}
-            </div>
-            <div class="post-footer">
-                <div class="icon-div">
-                    <img src="/common/images/upvote-icon.png" alt="Upvote Icon" class="icons">
-                    <span class="label">Upvote</span>
-                    <span class="vote-count"> · {{this.votes}}</span>
-                </div>
-                <div class="icon-div">
-                    <img src="/common/images/downvote-icon.png" alt="Downvote Icon" class="icons downvote-button">
-                </div>
-                <div class="icon-div">
-                    <img src="/common/images/comment-icon.png" alt="Comment Icon" class="icons">
-                    <span class="label">Comment</span>
-                </div>
-                <div class="icon-div">
-                    <img src="/common/images/share-icon.png" alt="Share Icon" class="icons">
-                    <span class="label">Share</span>
-                </div>
-            </div>
-        </div>
-        {{/each}}
+        <h1>Recent Posts</h1>
+        <ul>
+            {{#each posts}}
+            <li><a href="/posts/{{posts._id}}">{{posts.title}}</a></li>
+            {{/each}}
+        </ul>
     </div>
 </div>
 </body>
