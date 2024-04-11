@@ -42,7 +42,6 @@
         </div>
     </div>
     <div class="posts-panel">
-        {{#each posts}}
         <div class="post">
             <div class="post-header">
                 <div class="user-info">
@@ -67,7 +66,7 @@
                 <div class="icon-div">
                     <img src="/common/images/upvote-icon.png" alt="Upvote Icon" class="icons">
                     <span class="label">Upvote</span>
-                    <span class="vote-count"> · {{this.votes}}</span>
+                    <span class="vote-count"> {{this.votes}}</span>
                 </div>
                 <div class="icon-div">
                     <img src="/common/images/downvote-icon.png" alt="Downvote Icon" class="icons downvote-button">
@@ -82,7 +81,6 @@
                 </div>
             </div>
         </div>
-        {{/each}}
     </div>
 </div>
 </body>
