@@ -1,0 +1,127 @@
+<body>
+<div class="container">
+    <div class="header panel">
+
+        <div class="app-div">
+            <img src="images/logo.png" alt="Threadle logo" class="threadle-logo">
+
+            <div class="app-name">
+                Threadle
+            </div>
+        </div>
+
+        <div class="search-div">
+            <img src="images/search-icon.png" alt="Search Icon" class="search-icon">
+            <span class="search-text">Search Threadle</span>
+        </div>
+
+        <div class="profile picture">
+            <img src="images/user-1.png" alt="Profile Picture" class="profile-icon">
+        </div>
+    </div>
+
+    <div class="side-panel">
+        <div class="new-thread-button">
+            Start New Thread
+        </div>
+
+        <div class="side-menu-button">
+            Your Threads
+        </div>
+
+        <div class="side-menu-button">
+            Popular Threads
+        </div>
+
+        <div class="side-menu-button">
+            Saved
+        </div>
+
+        <div class="spaces-div">
+            <p>Your Spaces</p>
+            <ul>
+                <li>#cats</li>
+                <li>#dlsu</li>
+                <li>#South Korea</li>
+                <li>#Teamfight Tactics</li>
+            </ul>
+        </div>
+
+    </div>
+        <div class="posts-panel">
+            <div class="post">
+                <div class="post-header">
+                    <div class="user-info">
+                        <img src="{{ user.icon }}" alt="User Icon" class="user-icon">
+                    <div class="user-details">
+                        <span class="user-name">{{ user.displayName }}</span>
+                    <div class="post-metadata">
+                        <span class="post-space">{{ post.space }}</span>
+                        ·
+                        <span class="post-date">{{ post.date }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="post-title">
+                {{ post.title }}
+            </div>
+        </div>
+
+        <div class="post-body">
+            {{ post.content }}
+        </div>
+
+        <div class="post-footer">
+            <div class="icon-div">
+                <img src="images/upvote-icon.png" alt="Upvote Icon" class="icons">
+                <span class="label">Upvote</span>
+                <span class="vote-count"> · {{ post.votes }}</span>
+            </div>
+            <div class="icon-div">
+                <img src="images/downvote-icon.png" alt="Downvote Icon" class="icons downvote-button">
+            </div>
+            <div class="icon-div">
+                <img src="images/comment-icon.png" alt="Replies Icon" class="icons">
+                <span class="label">X Replies</span>
+            </div>
+            <div class="icon-div">
+                <img src="images/share-icon.png" alt="Share Icon" class="icons">
+                <span class="label">Share</span>
+            </div>
+            <div class="icon-div">
+                <img src="images/save-icon.png" alt="Save Icon" class="icons">
+                <span class="label">Save</span>
+            </div>
+            <div class="icon-div">
+                <img src="images/ellipsis-icon.png" alt="Ellipsis Icon" class="icons">
+                <span class="label">More</span>
+            </div>
+        </div>
+        </div>
+
+            <div class="post">
+                <div class="user-info">
+                    <img class="user-icon" src="https://via.placeholder.com/40" alt="User Icon">
+                    <div class="user-name">{{ comment.user }}</div>
+                </div>
+                <div class="post-header">
+                </div>
+                <div class="post-body">
+                    {{ comment.content }}
+                </div>
+                <div class="post-footer">
+                    <div class="icon-div">
+                        <img class="icons" src="images/upvote-icon.png" alt="Upvote Icon">
+                        0
+                    </div>
+                    <div class="icon-div downvote-button">
+                        <img class="icons" src="images/downvote-icon.png" alt="Downvote Icon">
+                        0
+                    </div>
+                    <div class="label">{{ comment.createdAt }}</div>
+                </div>
+            </div>
+
+    </div>
+</body>
+</html>

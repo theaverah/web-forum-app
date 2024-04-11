@@ -7,7 +7,7 @@ var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
 var morgan = require("morgan");
-const db = require('server/models/db');
+const db = require('./server/models/db.js');
 const Post = require('./server/models/post.model');
 
 const mongoose = require('mongoose');
@@ -105,6 +105,15 @@ app.get('/profile_user', (req, res) => {
     css: 'main.css'
   });
 });
+
+app.get('/post1', (req, res) => {
+  res.render('post1', {
+    layout: 'default',
+    title: 'Threadle • View Post',
+    css: 'main.css'
+  });
+});
+
 
 app.post('/login', async (req, res) => {
   try {

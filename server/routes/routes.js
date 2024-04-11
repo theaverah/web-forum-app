@@ -39,6 +39,14 @@ router.get('/homepage', (req, res) => {
   });
 });
 
+router.get('/post1', (req, res) => {
+  res.render('post1', {
+    layout: 'default',
+    title: 'Threadle • View Post',
+    css: 'main.css'
+  });
+});
+
 // Serve the user_login template at /user_login
 router.get('/user_login', (req, res) => {
   res.render('user_login', {
