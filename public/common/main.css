@@ -521,3 +521,8 @@ body {
     justify-content: flex-start;
     color: #A296BD;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
