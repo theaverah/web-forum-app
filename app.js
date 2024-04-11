@@ -136,6 +136,31 @@ app.post('/login', async (req, res) => {
   }
 });
 
+app.get('/posts/:postId', async (req, res) => {
+  try {
+      const postId = req.params.postId;
+      const post = await Post.findById(postId);
+      if (!post) {
+          return res.status(404).send('Post not found');
+      }
+      res.render('post1', { post });
+  } catch (error) {
+      console.error('Error fetching post:', error);
+      res.status(500).send('Internal server error');
+  }
+});
+
+app.get('/homepage', async (req, res) => {
+  try {
+      const posts = await Post.find();
+
+      res.render('homepage', { posts: posts });
+  } catch (error) {
+      console.error('Error fetching posts:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
 db.connectToDB();
 
 // Start the server
