@@ -3,13 +3,12 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const User = require('./server/models/user.model.js');
+const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 var session = require("express-session");
 var morgan = require("morgan");
 
 const db = require('./server/models/db.js');
-
-const db = require('./server/models/db');
 const Post = require('./server/models/post.model');
 const app = express();
 
@@ -21,6 +20,12 @@ let uri = "mongodb+srv://natamendoza:010604@apdev.xlfciy3.mongodb.net/?retryWrit
 mongoose.connect(uri)
     .then(() => console.log("Connected to MongoDB Atlas"))
     .catch(error => console.error("Error connecting to MongoDB Atlas:", error)); 
+
+app.use(session({
+  secret: 'superdupersecretkey',
+  resasve: false,
+  saveUninitialized: false
+}));
 
 const { connectToDB } = require('./server/models/db.js');
 
@@ -36,6 +41,8 @@ app.set('view engine', 'hbs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Define the main layout
 app.layouts = {
@@ -114,7 +121,7 @@ app.post('/login_user', (req, res) => {
 
   User.findOne({username: username }).lean().then(function (User) {
     console.log("Welcome", username);
-
+    
     if (User != undefined && User._id != null) {
       req.session.username = username;
       console.log("Welcome again", username);
@@ -189,7 +196,7 @@ app.get('/homepage', async (req, res) => {
 db.connectToDB();
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
   console.log(`Listening at port ${PORT}`);
