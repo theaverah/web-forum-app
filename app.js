@@ -100,7 +100,7 @@ app.get('/signup', (req, res) => {
 
 app.get('/profile_user', (req, res) => {
   res.render('profile_user', {
-    layout: 'default',
+    layout: 'user',
     title: 'Threadle • User Profile',
     css: 'main.css'
   });

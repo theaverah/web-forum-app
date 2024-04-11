@@ -522,3 +522,28 @@ body {
     justify-content: flex-start;
     color: #A296BD;
 }
+
+.input-field,
+.textarea-field {
+    width: 100%;
+    background-color: #33394F;
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-style: italic;
+}
+
+.input-field::placeholder,
+.textarea-field::placeholder {
+    color: #A296BD;
+}
+
+label {
+    font-family: 'Poppins', sans-serif;
+}
+
+.new-thread-button {
+    font-family: 'Poppins', sans-serif;
+}

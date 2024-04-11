@@ -82,7 +82,7 @@ router.get('/profile_user', (req, res) => {
   res.render('profile_user', {
     layout: 'default',
     title: 'Threadle • User Profile',
-    css: 'user_login_signup.css'
+    css: 'main.css'
   });
 });
 
