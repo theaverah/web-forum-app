@@ -6,6 +6,9 @@ const User = require('./server/models/user.model.js');
 const bcrypt = require('bcrypt');
 var session = require("express-session");
 var morgan = require("morgan");
+
+const db = require('./server/models/db.js');
+
 const db = require('./server/models/db');
 const Post = require('./server/models/post.model');
 const app = express();
@@ -181,6 +184,7 @@ app.get('/homepage', async (req, res) => {
       res.status(500).send('Internal Server Error');
   }
 });
+
 
 db.connectToDB();
 
