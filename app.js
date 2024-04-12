@@ -3,15 +3,14 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const User = require('./server/models/user.model.js');
+const db = require('./server/models/db.js');
+const Post = require('./server/models/post.model');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 var session = require("express-session");
 var morgan = require("morgan");
 
-const db = require('./server/models/db.js');
-const Post = require('./server/models/post.model');
 const app = express();
-
 const mongoose = require('mongoose');
 const { MongoClient } = require('mongodb');
 
@@ -190,6 +189,26 @@ app.get('/homepage', async (req, res) => {
       console.error('Error fetching posts:', error);
       res.status(500).send('Internal Server Error');
   }
+});
+
+// Define a route for handling search requests
+app.post('/search-results', async (req, res) => {
+    try {
+        const query = req.body.query; // Extract the search query from the request body
+        const searchResults = await Post.find({ $text: { $search: query } });
+
+        // Render the search results page with the search results
+        res.render('search-results', {
+            layout: 'default',
+            title: 'Search Results',
+            css: 'main.css',
+            results: searchResults,
+            searchQuery: query
+        });
+    } catch (error) {
+        console.error('Error performing search:', error);
+        res.status(500).send('Error performing search');
+    }
 });
 
 

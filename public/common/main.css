@@ -34,22 +34,22 @@ body {
     justify-content: space-between;
 }
 
-.search-div {
-    width: 40%;
-    padding: 8px;
+.search-input {
+    height: 100%;
+    width: 500px;
     border: none;
+    padding-left: 15px;
+    font-size: 15px;
+    color: #A296BD;
+    outline: none;
     background-color: #33394F;
     border-radius: 10px;
-    outline: none;
-    display: flex;
-    align-items: center;
 }
 
-.search-icon {
-    width: 18px;
-    margin-right: 3px;
-    cursor: pointer;
-    margin-left: 10px;
+.search-input::placeholder {
+    color: #A296BD;
+    font-family: Poppins, sans-serif;
+    font-size: small;
 }
 
 .search-text {
@@ -57,6 +57,39 @@ body {
     font-size: 15px;
     color: #A296BD;
     cursor: pointer;
+}
+
+.search-div form {
+    display: flex;
+    align-items: center;
+}
+
+.search-div input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    background-color: #33394F;
+    border-radius: 10px 0 0 10px;
+    outline: none;
+    color: #A296BD;
+}
+
+.search-div button[type="submit"] {
+    border: none;
+    background-color: #33394F;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+}
+
+.search-div button[type="submit"] img {
+    width: 18px;
+    margin-right: 3px;
+    margin-left: 10px;
+}
+
+.search-div input[type="text"]::placeholder {
+    color: #A296BD;
+    opacity: 0.7;
 }
 
 .app-name {

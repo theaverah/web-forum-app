@@ -9,6 +9,9 @@ const postSchema = new mongoose.Schema({
     votes: { type: Number, default: 0 }
 });
 
+// Define text index on title, content, and space fields
+postSchema.index({ title: 'text', content: 'text', space: 'text' });
+
 // CRUD operations
 postSchema.statics.create = async function (post) {
     const newPost = new this(post);

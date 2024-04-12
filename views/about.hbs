@@ -5,8 +5,10 @@
             <div class="app-name">Threadle</div>
         </div>
         <div class="search-div">
-            <img src="/common/images/search-icon.png" alt="Search Icon" class="search-icon">
-            <span class="search-text">Search Threadle</span>
+            <form action="/search-results" method="POST">
+                <input type="text" name="searchQuery" placeholder="Search Threadle" class="search-input">
+                <button type="submit" class="search-button">Search</button>
+            </form>
         </div>
         <div class="profile-div">
             <a href="/profile_user/{{profileName}}">

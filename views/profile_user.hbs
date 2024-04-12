@@ -6,10 +6,12 @@
 						<img src="/common/images/logo.png" alt="Threadle logo" class="threadle-logo">
 						<div class="app-name">Threadle</div>
 					</div>
-					<div class="search-div">
-						<img src="/common/images/search-icon.png" alt="Search Icon" class="search-icon">
-						<span class="search-text">Search Threadle</span>
-					</div>
+                    <div class="search-div">
+                        <form action="/search-results" method="POST">
+                            <input type="text" name="searchQuery" placeholder="Search Threadle" class="search-input">
+                            <button type="submit" class="search-button">Search</button>
+                        </form>
+                    </div>
 					<div class="profile-div">
 						<img src="/common/images/user-1.png" alt="Profile Picture" class="profile-icon">
 					</div>
