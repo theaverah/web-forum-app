@@ -523,7 +523,6 @@ body {
 }
 
 .edit-profile-panel {
-    display: none;
     width: 60%;
     display: flex;
     flex-direction: column;
