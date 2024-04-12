@@ -52,10 +52,10 @@ app.layouts = {
 
 // Serve the homepage template at /
 app.get('/', (req, res) => {
-  res.render('homepage', {
+  res.render('user_login', {
     layout: 'default',
-    title: 'Threadle',
-    css: 'main.css'
+    title: 'Threadle • Login',
+    css: 'user_login_signup.css'
   });
 });
 
