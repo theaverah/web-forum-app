@@ -79,6 +79,9 @@ body {
     background-color: #33394F;
     border-radius: 0 10px 10px 0;
     cursor: pointer;
+    padding: 8px 10px;
+    color: #A296BD;
+    font-size: 15px;
 }
 
 .search-div button[type="submit"] img {
