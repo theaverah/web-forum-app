@@ -2,13 +2,15 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
-const User = require('./server/models/user.model.js');
 const db = require('./server/models/db.js');
-const Post = require('./server/models/post.model');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 var session = require("express-session");
 var morgan = require("morgan");
+
+const User = require('./server/models/user.model');
+const Post = require('./server/models/post.model');
+const Comment = require('./server/models/comment.model');
 
 const app = express();
 const mongoose = require('mongoose');
@@ -116,27 +118,83 @@ app.get('/post1', (req, res) => {
 app.post('/login_user', (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  console.log("Username:", username, "Password:", password);
 
   User.findOne({username: username }).lean().then(function (User) {
-    console.log("Welcome", username);
     
     if (User != undefined && User._id != null) {
       req.session.username = username;
-      console.log("Welcome again", username);
       if (User) {
-        if (User.password === password) {
-          res.render('homepage', {
-            layout: 'default',
-            title: 'Threadle • Home',
-            css: 'main.css'
-          });
-        }
+        bcrypt.compare(password, User.password, function (err, resp) {
+          if (resp) {
+            console.log("Welcome ", username, "!");
+            console.log("Password matched!");
+            res.render('homepage', {
+              layout: 'default',
+              title: 'Threadle • Home',
+              css: 'main.css'
+            });
+          }
+          else{
+            console.log("Sign in failed");
+            return res.redirect("back")
+          }
+        })
       }
     } else {
       console.log("Cannot find match");
     }
   })
+});
+
+app.post('/signup_user', async (req, res) => {
+  const { displayName, username, email, password } = req.body;
+
+    let user = await User.findOne({ username });
+
+    const takenUsername = await User.findOne({ username: username });
+
+    // Email and Username Validation
+    if (user && takenUsername) {
+        console.log("Email and username already taken");
+        return res.redirect("back")
+    }
+    if (user) {
+        console.log("Email already taken");
+        return res.redirect("back")
+    }
+    if (takenUsername) {
+        console.log("Username already taken");
+        console.log(takenUsername.username);
+        return res.redirect("back")
+    }
+
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPW = await bcrypt.hash(password, salt);
+    console.log(hashedPW);
+
+    console.log("Name:", displayName, "Username: ", username, "Email:", email, "Password:", hashedPW);
+    try {
+      user = new User({
+            username,
+            displayName,
+            password: hashedPW,
+            email,
+            bio: "The user has not added a bio yet.",
+            following: "0",
+            followers: "0",
+            icon: "images/user-1.png"
+        });
+        await user.save();
+        console.log("User successfully created!");
+        res.render('user_login', {
+          layout: 'default',
+          title: 'Threadle • Login',
+          css: 'user_login_signup.css'
+        });
+    } catch (err) {
+        console.log("Unable to retrieve User", err);
+        return res.redirect("back")
+    }
 });
 
 app.get('/posts/:postId', async (req, res) => {
@@ -215,7 +273,7 @@ app.post('/search-results', async (req, res) => {
 db.connectToDB();
 
 // Start the server
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
   console.log(`Listening at port ${PORT}`);
