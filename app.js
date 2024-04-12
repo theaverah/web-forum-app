@@ -24,7 +24,7 @@ mongoose.connect(uri)
 
 app.use(session({
   secret: 'superdupersecretkey',
-  resasve: false,
+  resave: false,
   saveUninitialized: false
 }));
 
