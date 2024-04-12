@@ -4,9 +4,8 @@ $(document).ready(function(){
         $(".edit-profile-panel").show();
     });
 
-    $('#save-profile-btn').click(function() {
-
-        
+    $('#editForm').on('submit', function(event) {
+        event.preventDefault();
         $(".edit-profile-panel").hide();
         $(".profile-panel").show();
     });
