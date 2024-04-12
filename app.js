@@ -24,7 +24,7 @@ mongoose.connect(uri)
 
 app.use(session({
   secret: 'superdupersecretkey',
-  resasve: false,
+  resave: false,
   saveUninitialized: false
 }));
 
@@ -126,8 +126,8 @@ app.post('/login_user', (req, res) => {
       if (User) {
         bcrypt.compare(password, User.password, function (err, resp) {
           if (resp) {
-            console.log("Welcome ", username, "!");
             console.log("Password matched!");
+            console.log("Welcome ", username,);
             res.render('homepage', {
               layout: 'default',
               title: 'Threadle • Home',
@@ -135,7 +135,8 @@ app.post('/login_user', (req, res) => {
             });
           }
           else{
-            console.log("Sign in failed");
+            console.log("Passwords do not match!");
+            console.log("Sign in failed.");
             return res.redirect("back")
           }
         })
